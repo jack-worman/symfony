@@ -237,7 +237,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addFormSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addFormSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -757,7 +760,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addAssetsSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addAssetsSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -853,7 +859,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addAssetMapperSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addAssetMapperSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -979,7 +988,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addTranslatorSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addTranslatorSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -1077,7 +1089,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addValidationSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addValidationSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -1182,7 +1197,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addSerializerSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addSerializerSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $defaultContextNode = fn () => (new NodeBuilder())
             ->arrayNode('default_context')
@@ -1251,7 +1269,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addPropertyAccessSection(ArrayNodeDefinition $rootNode, callable $willBeAvailable): void
+    /**
+     * @param \Closure(string, string):bool $willBeAvailable
+     */
+    private function addPropertyAccessSection(ArrayNodeDefinition $rootNode, \Closure $willBeAvailable): void
     {
         $rootNode
             ->children()
@@ -1271,7 +1292,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addPropertyInfoSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addPropertyInfoSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -1298,7 +1322,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addTypeInfoSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addTypeInfoSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -1310,7 +1337,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addCacheSection(ArrayNodeDefinition $rootNode, callable $willBeAvailable): void
+    /**
+     * @param (\Closure(string, class-string):bool) $willBeAvailable
+     */
+    private function addCacheSection(ArrayNodeDefinition $rootNode, \Closure $willBeAvailable): void
     {
         $rootNode
             ->children()
@@ -1491,7 +1521,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addLockSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addLockSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -1554,7 +1587,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addSemaphoreSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addSemaphoreSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -1609,7 +1645,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addWebLinkSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addWebLinkSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -1621,7 +1660,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addMessengerSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addMessengerSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -1854,7 +1896,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addSchedulerSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addSchedulerSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -1879,7 +1924,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addHttpClientSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addHttpClientSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -2257,7 +2305,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addMailerSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addMailerSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -2405,7 +2456,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addNotifierSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addNotifierSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -2457,7 +2511,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addWebhookSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addWebhookSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -2486,7 +2543,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addRemoteEventSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addRemoteEventSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -2498,7 +2558,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addRateLimiterSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addRateLimiterSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -2574,7 +2637,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addUidSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addUidSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -2607,7 +2673,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addHtmlSanitizerSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addHtmlSanitizerSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()
@@ -2752,7 +2821,10 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addJsonStreamerSection(ArrayNodeDefinition $rootNode, callable $enableIfStandalone): void
+    /**
+     * @param \Closure(string, class-string):("canBeDisabled"|"canBeEnabled") $enableIfStandalone
+     */
+    private function addJsonStreamerSection(ArrayNodeDefinition $rootNode, \Closure $enableIfStandalone): void
     {
         $rootNode
             ->children()

@@ -1878,14 +1878,20 @@ class FrameworkExtension extends Extension
         $this->registerMappingFilesFromConfig($container, $config, $fileRecorder);
     }
 
-    private function registerMappingFilesFromDir(string $dir, callable $fileRecorder): void
+    /**
+     * @param \Closure(string,string):void $fileRecorder
+     */
+    private function registerMappingFilesFromDir(string $dir, \Closure $fileRecorder): void
     {
         foreach (Finder::create()->followLinks()->files()->in($dir)->name('/\.(xml|ya?ml)$/')->sortByName() as $file) {
             $fileRecorder($file->getExtension(), $file->getRealPath());
         }
     }
 
-    private function registerMappingFilesFromConfig(ContainerBuilder $container, array $config, callable $fileRecorder): void
+    /**
+     * @param \Closure(string,string):void $fileRecorder
+     */
+    private function registerMappingFilesFromConfig(ContainerBuilder $container, array $config, \Closure $fileRecorder): void
     {
         foreach ($config['mapping']['paths'] as $path) {
             if (is_dir($path)) {
