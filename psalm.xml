@@ -69,6 +69,11 @@
                 <referencedClass name="SensitiveParameter"/>
             </errorLevel>
         </UndefinedAttributeClass>
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="src/Symfony" />
+            </errorLevel>
+        </PossiblyUnusedMethod>
     </issueHandlers>
 
     <forbiddenFunctions>
