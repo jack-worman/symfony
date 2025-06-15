@@ -8,7 +8,7 @@
     cacheDirectory="./.github/psalm/cache/"
     errorBaseline=".github/psalm/psalm.baseline.xml"
     findUnusedBaselineEntry="false"
-    findUnusedCode="false"
+    findUnusedCode="true"
     findUnusedIssueHandlerSuppression="false"
     ensureOverrideAttribute="false"
 >
