@@ -13,6 +13,8 @@ namespace Symfony\Component\RateLimiter\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\PhpUnit\ClockMock;
+use Symfony\Component\Lock\LockFactory;
+use Symfony\Component\Lock\SharedLockInterface;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use Symfony\Component\RateLimiter\Policy\FixedWindowLimiter;
 use Symfony\Component\RateLimiter\Policy\NoLimiter;
@@ -59,6 +61,34 @@ class RateLimiterFactoryTest extends TestCase
             'policy' => 'no_limit',
             'id' => 'test',
         ]];
+    }
+
+    public function testLockNameIsSafeForEveryLockStore()
+    {
+        $resources = [];
+        $lockFactory = $this->createStub(LockFactory::class);
+        $lockFactory->method('createLock')->willReturnCallback(function (string $resource) use (&$resources) {
+            $resources[] = $resource;
+
+            return $this->createStub(SharedLockInterface::class);
+        });
+
+        $factory = new RateLimiterFactory([
+            'policy' => 'fixed_window',
+            'id' => 'test',
+            'limit' => 5,
+            'interval' => '5 seconds',
+        ], new InMemoryStorage(), $lockFactory);
+
+        foreach (["a b\n\0", "\xff", str_repeat('a', 300), 'key', 'key'] as $key) {
+            $factory->create($key);
+        }
+
+        foreach ($resources as $resource) {
+            $this->assertMatchesRegularExpression('/^[\w.-]{1,64}$/', $resource);
+        }
+        $this->assertCount(4, array_unique($resources));
+        $this->assertSame($resources[3], $resources[4]);
     }
 
     /**

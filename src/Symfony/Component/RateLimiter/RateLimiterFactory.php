@@ -44,7 +44,8 @@ final class RateLimiterFactory
     public function create(?string $key = null): LimiterInterface
     {
         $id = $this->config['id'].'-'.$key;
-        $lock = $this->lockFactory?->createLock($id);
+        // The key often comes from the request, and lock stores restrict the length and bytes of a resource name
+        $lock = $this->lockFactory?->createLock(hash('sha256', $id));
 
         return match ($this->config['policy']) {
             'token_bucket' => new TokenBucketLimiter($id, $this->config['limit'], $this->config['rate'], $this->storage, $lock),
